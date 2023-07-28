@@ -2,14 +2,14 @@ import { View, Text, TextInput, TouchableOpacity, Button, StyleSheet, ScrollView
 import React, { useContext, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
-import { AuthContext } from '../components/AuthContext';
+// import { AuthContext } from '../components/AuthContext';
 
 const ToDoList = () => {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [todos, setToDos] = useState([]);
     const navigation = useNavigation();
-    const { logOut } = useContext(AuthContext);
+    // const { logOut } = useContext(AuthContext);
   
     const addToDo = () => {
       if (title.trim() !== '') {
@@ -20,7 +20,17 @@ const ToDoList = () => {
       }
     };
 
-  
+  const logOut = async () => {
+    try {
+      // Clear user information from AsyncStorage directly
+      AsyncStorage.removeItem('userInfo');
+      AsyncStorage.removeItem('accessToken');
+      setUserInfo({}); // Clear user information from state if needed
+      toastLogoutMessage();
+    } catch (error) {
+      console.log('Logout error:', error);
+    }
+  };
   return (
     <View style={{ flex: 1 }}>
       <Text style={styles.toDoHeading}>ToDoList</Text>

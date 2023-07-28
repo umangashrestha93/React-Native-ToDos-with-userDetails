@@ -4,6 +4,7 @@ import loginUI from '../styling/loginUI'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { useNavigation } from '@react-navigation/native'
 import { AuthContext } from '../components/AuthContext'
+import { Toast } from 'react-native-toast-message/lib/src/Toast'
 
 // import { AuthContext } from '../components/Context'
 
